@@ -17,8 +17,7 @@ public class HomeController {
 
     @Autowired
     PostService postService;
-
-    @RequestMapping("/posts")
+    @RequestMapping("/")
     public String allPosts(Model model){
         List<Post> posts = postService.getAllPublicPosts();
         model.addAttribute("posts",posts);

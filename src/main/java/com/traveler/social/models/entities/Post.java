@@ -18,6 +18,7 @@ public class Post {
 
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getId() {
         return id;
     }
@@ -66,35 +67,35 @@ public class Post {
         this.postContent = postContent;
     }
 
-//    @OneToOne(mappedBy = "Posts")
-//    @JoinColumn(name = "user_id", referencedColumnName = "user_id", insertable = false, updatable = false)
-//    public User getUser() {
-//        return user;
-//    }
-//
-//    public void setUser(User user) {
-//        this.user = user;
-//    }
-//
-//    @OneToOne
-//    @JoinColumn(name = "place_id", referencedColumnName = "place_id", insertable = false, updatable = false)
-//    public Place getPlace() {
-//        return place;
-//    }
-//
-//    public void setPlace(Place place) {
-//        this.place = place;
-//    }
-//
-//    @OneToOne
-//    @JoinColumn(name = "privacy_type_id", referencedColumnName = "privacy_type_id", insertable = false, updatable = false)
-//    public PrivaryType getPrivaryType() {
-//        return privaryType;
-//    }
-//
-//    public void setPrivaryType(PrivaryType privaryType) {
-//        this.privaryType = privaryType;
-//    }
+    @OneToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id", insertable = false, updatable = false)
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    @OneToOne
+    @JoinColumn(name = "place_id", referencedColumnName = "id", insertable = false, updatable = false)
+    public Place getPlace() {
+        return place;
+    }
+
+    public void setPlace(Place place) {
+        this.place = place;
+    }
+
+    @OneToOne
+    @JoinColumn(name = "privacy_type_id", referencedColumnName = "id", insertable = false, updatable = false)
+    public PrivaryType getPrivaryType() {
+        return privaryType;
+    }
+
+    public void setPrivaryType(PrivaryType privaryType) {
+        this.privaryType = privaryType;
+    }
 
     @Override
     public boolean equals(Object o) {

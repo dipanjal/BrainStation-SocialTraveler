@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
+@Table(name = "PrivaryTypes", schema = "social_traveler")
 public class PrivaryType {
     private int id;
     private String privacyType;

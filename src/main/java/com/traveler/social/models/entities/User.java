@@ -1,17 +1,28 @@
 package com.traveler.social.models.entities;
 
 
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class User {
+@Entity
+@Table(name = "Users", schema = "social_traveler")
+public class User implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     @Size(min = 2, max = 10,message = "first name must contains 2-10 characters")
+    @Column(name = "first_name")
     private String firstName;
+
     @Size(min = 2, max = 10,message = "last name must contains 2-10 characters")
+    @Column(name = "last_name")
     private String lastName;
+
     @NotNull(message = "email cannot be empty")
     @Pattern(regexp = "^[a-zA-Z0-9]+([._-][a-zA-Z0-9]+)*@[a-zA-Z0-9]{2,50}([.][a-z]{2,5})+$",
         message = "Invalid Email Format")
@@ -21,6 +32,8 @@ public class User {
     @NotNull(message = "password cannot be empty")
     @Size(min = 6, max = 20, message = "password must contains 6-20 characters")
     private String password;
+
+    @Column(name = "created_at")
     private Timestamp createdAt;
 
     public User() {

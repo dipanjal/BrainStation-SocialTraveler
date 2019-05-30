@@ -2,6 +2,7 @@ package com.traveler.social.dao;
 
 
 import com.traveler.social.models.entities.User;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 

@@ -1,5 +1,6 @@
 package com.traveler.social.config;
 
+import com.traveler.social.interceptor.AuthInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -32,8 +33,8 @@ public class WebConfig implements WebMvcConfigurer {
     }
 
     @Bean
-    DemoInterceptor demoInterceptor() {
-        return new DemoInterceptor();
+    AuthInterceptor demoInterceptor() {
+        return new AuthInterceptor();
     }
 
     @Override

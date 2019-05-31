@@ -1,4 +1,4 @@
-package com.traveler.social.config;
+package com.traveler.social.interceptor;
 
 import com.traveler.social.UserSessionManager;
 import com.traveler.social.models.entities.User;
@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.net.URL;
 
-public class DemoInterceptor implements HandlerInterceptor {
+public class AuthInterceptor implements HandlerInterceptor {
 
     String[] excludeMappingUrls = new String[]{
             "",

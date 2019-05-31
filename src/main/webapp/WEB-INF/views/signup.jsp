@@ -15,42 +15,47 @@
     }
 </style>
 
-<h3>Signup</h3>
 
-<form:form method="post" modelAttribute="user">
-    <%--<form:input path="userName"></form:input>--%>
-    <%--<input type="submit" value="signup"/>--%>
+<center>
+    <h3>Signup</h3>
+    <form:form method="post" modelAttribute="user">
+        <%--<form:input path="userName"></form:input>--%>
+        <%--<input type="submit" value="signup"/>--%>
 
-    <table border="0" cellpadding="2" cellspacing="2">
-        <tr>
-            <td>First Name:</td>
-            <td><form:input path="firstName"/> <form:errors path="firstName" cssClass="error"/> </td>
-        </tr>
-        <tr>
-            <td>Last Name:</td>
-            <td><form:input path="lastName"/> <form:errors path="lastName" cssClass="error"/> </td>
-        </tr>
-        <tr>
-            <td>Email:</td>
-            <td><form:input path="email"/>  <form:errors path="email"  cssClass="error"/> </td>
-        </tr>
+        <table border="0" cellpadding="2" cellspacing="2">
+            <tr>
+                <td>First Name:</td>
+                <td><form:input path="firstName"/> <form:errors path="firstName" cssClass="error"/> </td>
+            </tr>
+            <tr>
+                <td>Last Name:</td>
+                <td><form:input path="lastName"/> <form:errors path="lastName" cssClass="error"/> </td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td><form:input path="email"/>  <form:errors path="email"  cssClass="error"/> </td>
+            </tr>
 
-        <tr>
-            <td>Phone:</td>
-            <td><form:input path="phone"/>  <form:errors path="phone" cssClass="error"/> </td>
-        </tr>
+            <tr>
+                <td>Phone:</td>
+                <td><form:input path="phone"/>  <form:errors path="phone" cssClass="error"/> </td>
+            </tr>
 
-        <tr>
-            <td>Password:</td>
-            <td><form:input path="password"/>  <form:errors path="password" cssClass="error"/> </td>
-        </tr>
+            <tr>
+                <td>Password:</td>
+                <td><form:input path="password"/>  <form:errors path="password" cssClass="error"/> </td>
+            </tr>
 
-        <tr>
-            <td><input type="submit" value="Signup" /></td>
-        </tr>
-    </table>
+            <tr>
+                <td><input type="submit" value="Signup" /></td>
+                <td><a href="/" />Login</td>
 
-</form:form>
+            </tr>
+        </table>
+
+    </form:form>
+</center>
+
 
 </body>
 </html>

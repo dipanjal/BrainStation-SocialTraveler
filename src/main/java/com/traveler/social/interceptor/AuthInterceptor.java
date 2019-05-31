@@ -14,7 +14,8 @@ public class AuthInterceptor implements HandlerInterceptor {
     String[] excludeMappingUrls = new String[]{
             "",
             "/",
-            "/login"
+            "/login",
+            "/signup"
     };
 
     @Override

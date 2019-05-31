@@ -1,5 +1,6 @@
 package com.traveler.social.controllers.web;
 
+import com.traveler.social.UserSessionManager;
 import com.traveler.social.models.entities.User;
 import com.traveler.social.models.viewmodels.LoginForm;
 import com.traveler.social.service.UserService;
@@ -10,8 +11,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 @Controller
@@ -20,13 +21,18 @@ public class LoginController {
     UserService userService;
 
     @RequestMapping("/")
-    public String index(Model model){
+    public String index(Model model,HttpServletRequest request){
+        User loggedUser = UserSessionManager.getSessionUser(request);
+        if(loggedUser!=null){
+            return "home";
+        }
         model.addAttribute("loginForm",new LoginForm());
         return "login";
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public String loginPost(@ModelAttribute("loginForm") @Valid LoginForm loginForm, BindingResult result, Model model){
+    public String loginPost(@ModelAttribute("loginForm") @Valid LoginForm loginForm, BindingResult result, Model model,
+                            HttpServletRequest request){
         if(result.hasErrors()){
             return "login";
         }
@@ -34,10 +40,10 @@ public class LoginController {
         if(user==null){
             model.addAttribute("message","wrong credentials");
         }else{
-            return "redirect:/home";
+            if (UserSessionManager.setSessionUser(request,user)){
+                return "redirect:/home";
+            }
         }
-
-
         return "login";
     }
 }

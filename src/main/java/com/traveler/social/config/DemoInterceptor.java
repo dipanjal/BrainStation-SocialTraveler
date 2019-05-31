@@ -11,7 +11,11 @@ import java.net.URL;
 
 public class DemoInterceptor implements HandlerInterceptor {
 
-    String[] excludeMappingUrls = new String[]{"","/","/login"};
+    String[] excludeMappingUrls = new String[]{
+            "",
+            "/",
+            "/login"
+    };
 
     @Override
     public boolean preHandle(HttpServletRequest request,  HttpServletResponse response, Object handler) throws Exception {

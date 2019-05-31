@@ -10,17 +10,27 @@
 </head>
 <body>
 
+<!DOCTYPE html>
+<html lang="en">
 
-<h3>News Feed</h3>
+<body>
+
+<jsp:include page="navbar.jsp" />
+
+<div class="container">
+    <h3>News Feed</h3>
+    <c:forEach items="${posts}" var="post">
+        ${post.user.firstName}<br>
+        ${post.postContent}<br>
+        at ${post.place.placeName.toUpperCase()}<br><br>
+    </c:forEach>
+</div>
+
+</body>
+</html>
 
 
 
-<c:forEach items="${posts}" var="post">
-    ${post.user.firstName}<br>
-    ${post.postContent}<br>
-    at ${post.place.placeName.toUpperCase()}<br><br>
-
-</c:forEach>
 
 </body>
 </html>

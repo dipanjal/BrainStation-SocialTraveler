@@ -4,6 +4,7 @@ import com.traveler.social.UserSessionManager;
 import com.traveler.social.models.entities.User;
 import com.traveler.social.models.viewmodels.LoginForm;
 import com.traveler.social.service.UserService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,10 +21,13 @@ public class LoginController {
     @Autowired
     UserService userService;
 
+    Logger logger = Logger.getLogger(HomeController.class);
+
     @RequestMapping("/")
     public String index(Model model,HttpServletRequest request){
         User loggedUser = UserSessionManager.getSessionUser(request);
         if(loggedUser!=null){
+            logger.debug("showing login page");
             return "home";
         }
         model.addAttribute("loginForm",new LoginForm());
@@ -34,13 +38,16 @@ public class LoginController {
     public String loginPost(@ModelAttribute("loginForm") @Valid LoginForm loginForm, BindingResult result, Model model,
                             HttpServletRequest request){
         if(result.hasErrors()){
+            logger.debug("problem with model validation");
             return "login";
         }
         User user = userService.varifyUserLogin(loginForm.getEmail(),loginForm.getPassword());
         if(user==null){
+            logger.debug("incorrect login credentials");
             model.addAttribute("message","wrong credentials");
         }else{
             if (UserSessionManager.setSessionUser(request,user)){
+                logger.debug("User Logged in");
                 return "redirect:/home";
             }
         }

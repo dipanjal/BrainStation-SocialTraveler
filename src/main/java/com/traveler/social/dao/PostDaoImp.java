@@ -27,6 +27,9 @@ public class PostDaoImp extends BaseDaoImp implements PostDao{
     @Override
     public Post getPosyById(int id) {
         return (Post) super.getCurrentHibernateSession()
-                .createQuery("from Post WHERE id=:id").setMaxResults(1).uniqueResult();
+                .createQuery("from Post WHERE id=:id")
+                .setParameter("id",id)
+                .setMaxResults(1)
+                .uniqueResult();
     }
 }

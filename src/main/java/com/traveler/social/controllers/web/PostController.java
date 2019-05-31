@@ -38,7 +38,10 @@ public class PostController {
     }
 
     @RequestMapping(value = "",method = RequestMethod.POST)
-    public String SignupPost(@ModelAttribute("newPost") @Valid Post postToSave, BindingResult result, Model model){
+    public String SignupPost(
+            @ModelAttribute("newPost") @Valid Post postToSave,
+            BindingResult result,
+            Model model){
         if(result.hasErrors()){
 //            return "redirect:" + "/post";
             return "post";
@@ -47,6 +50,7 @@ public class PostController {
         Post newPost = new Post();
         newPost.setUserId(1);
         model.addAttribute("newPost",newPost);
+        model.addAttribute("btnText", "Post");
 
         if(postService.save(postToSave)!=null){
             model.addAttribute("message","post created");
@@ -57,10 +61,25 @@ public class PostController {
     }
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
-    public String index(@PathVariable(name="id") int id, Model model){
+    public String editIndex(@PathVariable(name="id") int id, Model model){
         Post post = postService.getPosyById(id);
         post.setUserId(1);
         model.addAttribute("newPost", post);
-        return "post";
+        model.addAttribute("btnText", "update");
+        return "post-edit";
+    }
+
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    public String editConfirm(@ModelAttribute("newPost") @Valid Post postToUpdate,
+                        BindingResult result,
+                        Model model){
+        if(result.hasErrors()){
+            return "post-edit";
+        }
+        if(postService.update(postToUpdate)){
+            return "redirect:/user/timeline";
+        }
+        model.addAttribute("message","somwthing went wrong");
+        return "post-edit";
     }
 }

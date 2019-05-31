@@ -80,10 +80,11 @@
                     console.log(val);
                     // var ulTemp = ul.attr("id",val.id);
                     // ulTemp.append()
+                    var url = "/post/edit/"+val.id;
                     table.append("<tr><td>"+val.user.firstName +"</td>"+
                         "<td>at "+ val.place.placeName+"</td>" +
                         "<td>"+val.postContent+"</td>" +
-                        "<td><a role='button' href='/post/edit/' type=\"button\" class=\"btn btn-primary\">Edit</a></td>" +
+                        "<td><a role='button' href='"+url+"' type=\"button\" class=\"btn btn-primary\">Edit</a></td>" +
                         "</tr>");
                     <%--div.append('<ul lass="list-group" id="1"> <li> ${val.postContent} </li> </ul>');--%>
                     // $('<option>').val(val.id).text(val.privacyType).appendTo(select);

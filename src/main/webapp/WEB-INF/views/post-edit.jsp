@@ -37,10 +37,11 @@
 <h3>Create A Post</h3>
 
 
-<form:form method="post" modelAttribute="newPost">
+<form:form action="/post/edit" method="post" modelAttribute="newPost">
 
     <div class="form-group">
         <form:hidden path="userId" value="${newPost.userId}"/>
+        <form:hidden path="id" value="${newPost.id}"/>
         <form:textarea  path="postContent" cssClass="form-control rounded-0"
                         placeholder="whats on you mind..." id="exampleFormControlTextarea1" rows="10"/>
         <form:errors path="postContent" cssClass="error"/>
@@ -71,7 +72,7 @@
         });
         </script>
     </div>
-    <div class="form-group">
+    <div class="form-group" >
         <form:select cssClass="form-control" id="privacy_dropdown" path="privacyTypeId">
             <option></option>
         </form:select>
@@ -94,7 +95,7 @@
 
     </div>
 
-    <input type="submit" value="${btnText}"/></td>
+    <input type="submit" value="Update"/></td>
 
 </form:form>
 
@@ -102,7 +103,7 @@
     ${message}
 </h3>
 
-<!--Material textarea-->
+
 
 
 

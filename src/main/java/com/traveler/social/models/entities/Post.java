@@ -1,20 +1,27 @@
 package com.traveler.social.models.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Objects;
 
 @Entity
 @Table(name = "Posts", schema = "social_traveler")
 public class Post {
     private int id;
+    @NotNull
     private int userId;
+    @NotNull(message = "must select a privacy")
     private int privacyTypeId;
+    @NotNull(message = "must select a place")
     private int placeId;
+    @NotNull(message = "must write something")
+    @Size(min = 5, max = 1500, message = "must write something")
     private String postContent;
 
     private User user;
     private Place place;
-    private PrivaryType privaryType;
+    private PrivacyType privacyType;
 
     @Id
     @Column(name = "id")
@@ -89,12 +96,12 @@ public class Post {
 
     @OneToOne
     @JoinColumn(name = "privacy_type_id", referencedColumnName = "id", insertable = false, updatable = false)
-    public PrivaryType getPrivaryType() {
-        return privaryType;
+    public PrivacyType getPrivacyType() {
+        return privacyType;
     }
 
-    public void setPrivaryType(PrivaryType privaryType) {
-        this.privaryType = privaryType;
+    public void setPrivacyType(PrivacyType privacyType) {
+        this.privacyType = privacyType;
     }
 
     @Override

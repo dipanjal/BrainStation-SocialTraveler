@@ -9,4 +9,5 @@ import java.util.List;
 public interface PostDao extends BaseDao {
     List<Post> getAllPosts();
     List<Post> getAllPublicPosts();
+    Post getPosyById(int id);
 }

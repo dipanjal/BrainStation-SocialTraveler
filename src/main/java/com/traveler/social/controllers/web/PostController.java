@@ -3,12 +3,15 @@ package com.traveler.social.controllers.web;
 import com.traveler.social.models.entities.Post;
 import com.traveler.social.models.entities.User;
 import com.traveler.social.models.viewmodels.PostForm;
+import com.traveler.social.service.PlaceService;
 import com.traveler.social.service.PostService;
+import com.traveler.social.service.PrivacyTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -21,22 +24,43 @@ public class PostController {
 
     @Autowired
     PostService postService;
+    @Autowired
+    PlaceService placeService;
+    @Autowired
+    PrivacyTypeService privacyTypeService;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String index(Model model){
-        model.addAttribute("newPost", new PostForm());
+        Post post = new Post();
+        post.setUserId(1);
+        model.addAttribute("newPost", post);
         return "post";
     }
 
     @RequestMapping(value = "",method = RequestMethod.POST)
-    public String SignupPost(@ModelAttribute("newPost") @Valid PostForm newPostForm, BindingResult result){
+    public String SignupPost(@ModelAttribute("newPost") @Valid Post postToSave, BindingResult result, Model model){
         if(result.hasErrors()){
+//            return "redirect:" + "/post";
             return "post";
         }
-//        Post post = postService.save(newPost);
-//        if (post!=null){
-//            System.out.println("post created");
-//        }
-        return "login";
+
+        Post newPost = new Post();
+        newPost.setUserId(1);
+        model.addAttribute("newPost",newPost);
+
+        if(postService.save(postToSave)!=null){
+            model.addAttribute("message","post created");
+        }else{
+            model.addAttribute("message","something went wrong");
+        }
+        return "post";
+    }
+
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+    public String index(@PathVariable(name="id") int id, Model model){
+        Post post = postService.getPosyById(id);
+        post.setUserId(1);
+        model.addAttribute("newPost", post);
+        return "post";
     }
 }

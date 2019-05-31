@@ -25,8 +25,8 @@ public class UserDaoImp extends BaseDaoImp implements UserDao {
 
     public User varifyUserLogin(String userName,String password){
         User user = (User)getCurrentHibernateSession().createQuery("FROM User " +
-                "WHERE userName =:user_name and password=:pass")
-                .setParameter("user_name",userName)
+                "WHERE email =:email and password=:pass")
+                .setParameter("email",userName)
                 .setParameter("pass",password)
                 .setMaxResults(1)
                 .uniqueResult();

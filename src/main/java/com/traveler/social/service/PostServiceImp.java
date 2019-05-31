@@ -31,6 +31,11 @@ public class PostServiceImp implements PostService {
     }
 
     @Override
+    public Post getPosyById(int id) {
+        return postDao.getPosyById(id);
+    }
+
+    @Override
     public List<Post> getAllPosts() {
         return postDao.getAllPosts();
     }

@@ -49,9 +49,9 @@ INSERT INTO `Places` (`id`, `place_name`, `latitude`, `longitude`) VALUES
 
 CREATE TABLE `Posts` (
   `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `privacy_type_id` int(11) NOT NULL,
-  `place_id` int(11) NOT NULL,
+  `userId` int(11) NOT NULL,
+  `privacyTypeId` int(11) NOT NULL,
+  `placeId` int(11) NOT NULL,
   `post_content` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -59,27 +59,27 @@ CREATE TABLE `Posts` (
 -- Dumping data for table `Posts`
 --
 
-INSERT INTO `Posts` (`id`, `user_id`, `privacy_type_id`, `place_id`, `post_content`) VALUES
+INSERT INTO `Posts` (`id`, `userId`, `privacyTypeId`, `placeId`, `post_content`) VALUES
 (1, 1, 1, 1, 'Dhaka is not a place to live'),
 (2, 1, 2, 2, 'It\'s quite peaceful in Khulna');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `PrivaryTypes`
+-- Table structure for table `PrivacyTypes`
 --
 
-CREATE TABLE `PrivaryTypes` (
+CREATE TABLE `PrivacyTypes` (
   `id` int(11) NOT NULL,
   `privacy_type` varchar(50) DEFAULT NULL,
   `description` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `PrivaryTypes`
+-- Dumping data for table `PrivacyTypes`
 --
 
-INSERT INTO `PrivaryTypes` (`id`, `privacy_type`, `description`) VALUES
+INSERT INTO `PrivacyTypes` (`id`, `privacy_type`, `description`) VALUES
 (1, 'public', 'everybody can see this'),
 (2, 'private', 'only the content creator can see this');
 
@@ -123,14 +123,14 @@ ALTER TABLE `Places`
 ALTER TABLE `Posts`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `id` (`id`),
-  ADD KEY `privacy_type_id` (`privacy_type_id`),
-  ADD KEY `place_id` (`place_id`),
-  ADD KEY `FKqwy1e63idnvjerwvc47tq3k5` (`user_id`);
+  ADD KEY `privacyTypeId` (`privacyTypeId`),
+  ADD KEY `placeId` (`placeId`),
+  ADD KEY `FKqwy1e63idnvjerwvc47tq3k5` (`userId`);
 
 --
--- Indexes for table `PrivaryTypes`
+-- Indexes for table `PrivacyTypes`
 --
-ALTER TABLE `PrivaryTypes`
+ALTER TABLE `PrivacyTypes`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `id` (`id`);
 
@@ -156,9 +156,9 @@ ALTER TABLE `Places`
 ALTER TABLE `Posts`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT for table `PrivaryTypes`
+-- AUTO_INCREMENT for table `PrivacyTypes`
 --
-ALTER TABLE `PrivaryTypes`
+ALTER TABLE `PrivacyTypes`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `Users`
@@ -173,10 +173,10 @@ ALTER TABLE `Users`
 -- Constraints for table `Posts`
 --
 ALTER TABLE `Posts`
-  ADD CONSTRAINT `FKqwy1e63idnvjerwvc47tq3k5` FOREIGN KEY (`user_id`) REFERENCES `Users` (`id`),
-  ADD CONSTRAINT `Posts_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `Users` (`id`),
-  ADD CONSTRAINT `Posts_ibfk_2` FOREIGN KEY (`privacy_type_id`) REFERENCES `PrivaryTypes` (`id`),
-  ADD CONSTRAINT `Posts_ibfk_3` FOREIGN KEY (`place_id`) REFERENCES `Places` (`id`);
+  ADD CONSTRAINT `FKqwy1e63idnvjerwvc47tq3k5` FOREIGN KEY (`userId`) REFERENCES `Users` (`id`),
+  ADD CONSTRAINT `Posts_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `Users` (`id`),
+  ADD CONSTRAINT `Posts_ibfk_2` FOREIGN KEY (`privacyTypeId`) REFERENCES `PrivacyTypes` (`id`),
+  ADD CONSTRAINT `Posts_ibfk_3` FOREIGN KEY (`placeId`) REFERENCES `Places` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

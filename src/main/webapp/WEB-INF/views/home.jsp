@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: iftekhar
-  Date: 3/7/19
-  Time: 3:45 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -22,10 +15,10 @@
 
 
 
-<c:forEach items="${posts}" var="posts">
-    ${posts.user.firstName}<br>
-    ${posts.postContent}<br>
-    ${posts.place.placeName.toUpperCase()}<br><br>
+<c:forEach items="${posts}" var="post">
+    ${post.user.firstName}<br>
+    ${post.postContent}<br>
+    at ${post.place.placeName.toUpperCase()}<br><br>
 
 </c:forEach>
 

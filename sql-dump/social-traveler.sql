@@ -27,14 +27,14 @@ CREATE TABLE `Places`
 CREATE TABLE `Posts`
 (
   `id` int UNIQUE PRIMARY KEY NOT NULL,
-  `user_id` int NOT NULL,
-  `privacy_type_id` int NOT NULL,
-  `place_id` int NOT NULL,
+  `userId` int NOT NULL,
+  `privacyTypeId` int NOT NULL,
+  `placeId` int NOT NULL,
   `post_content` text
 );
 
-ALTER TABLE `Posts` ADD FOREIGN KEY (`user_id`) REFERENCES `Users` (`id`);
+ALTER TABLE `Posts` ADD FOREIGN KEY (`userId`) REFERENCES `Users` (`id`);
 
-ALTER TABLE `Posts` ADD FOREIGN KEY (`privacy_type_id`) REFERENCES `PrivaryTypes` (`id`);
+ALTER TABLE `Posts` ADD FOREIGN KEY (`privacyTypeId`) REFERENCES `PrivaryTypes` (`id`);
 
-ALTER TABLE `Posts` ADD FOREIGN KEY (`place_id`) REFERENCES `Places` (`id`);
+ALTER TABLE `Posts` ADD FOREIGN KEY (`placeId`) REFERENCES `Places` (`id`);

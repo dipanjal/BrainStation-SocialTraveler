@@ -4,8 +4,8 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "PrivaryTypes", schema = "social_traveler")
-public class PrivaryType {
+@Table(name = "PrivacyTypes", schema = "social_traveler")
+public class PrivacyType {
     private int id;
     private String privacyType;
     private String description;
@@ -45,7 +45,7 @@ public class PrivaryType {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        PrivaryType that = (PrivaryType) o;
+        PrivacyType that = (PrivacyType) o;
         return id == that.id &&
                 Objects.equals(privacyType, that.privacyType) &&
                 Objects.equals(description, that.description);

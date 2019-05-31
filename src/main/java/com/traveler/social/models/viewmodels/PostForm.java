@@ -1,25 +1,36 @@
 package com.traveler.social.models.viewmodels;
 
 import com.traveler.social.models.entities.Place;
-import com.traveler.social.models.entities.PrivaryType;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.traveler.social.models.entities.PrivacyType;
 import org.springframework.stereotype.Component;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Component
 public class PostForm {
     private int id;
     private List<Place> places;
-    private List<PrivaryType> privaryTypes;
-    private int user_id;
+    private List<PrivacyType> privacyTypes;
+
+    @NotNull
+    private int userId;
+    @NotNull(message = "must select a page")
+    private int placeId;
+    @NotNull(message = "must select a privacy type")
+    private int privacyTypeId;
+    @NotNull(message = "must write something")
+    @Size(min = 5, max = 1500, message = "must write something")
     private String postContent;
 
-    @Autowired
-
-
-
     public PostForm() {
+    }
+
+    public PostForm(List<Place> places, List<PrivacyType> privacyTypes, int userId) {
+        this.places = places;
+        this.privacyTypes = privacyTypes;
+        this.userId = userId;
     }
 
     public int getId() {
@@ -38,20 +49,20 @@ public class PostForm {
         this.places = places;
     }
 
-    public List<PrivaryType> getPrivaryTypes() {
-        return privaryTypes;
+    public List<PrivacyType> getPrivacyTypes() {
+        return privacyTypes;
     }
 
-    public void setPrivaryTypes(List<PrivaryType> privaryTypes) {
-        this.privaryTypes = privaryTypes;
+    public void setPrivacyTypes(List<PrivacyType> privacyTypes) {
+        this.privacyTypes = privacyTypes;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getPostContent() {
@@ -60,5 +71,21 @@ public class PostForm {
 
     public void setPostContent(String postContent) {
         this.postContent = postContent;
+    }
+
+    public int getPlaceId() {
+        return placeId;
+    }
+
+    public void setPlaceId(int placeId) {
+        this.placeId = placeId;
+    }
+
+    public int getPrivacyTypeId() {
+        return privacyTypeId;
+    }
+
+    public void setPrivacyTypeId(int privacyTypeId) {
+        this.privacyTypeId = privacyTypeId;
     }
 }

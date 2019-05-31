@@ -31,13 +31,6 @@
 
 <h3>Timeline</h3>
 
-<%--<div id="posts">--%>
-<%--    <ul class="list-group myList" hidden>--%>
-<%--        <li class="list-group-item post_content">--%>
-<%--            <span class="badge">Delete</span></li>--%>
-<%--    </ul>--%>
-<%--</div>--%>
-
 <div class="container">
     <h2>Basic Table</h2>
     <p>The .table class adds basic styling (light padding and only horizontal dividers) to a table:</p>
@@ -50,21 +43,6 @@
         </tr>
         </thead>
         <tbody>
-<%--        <tr>--%>
-<%--            <td>John</td>--%>
-<%--            <td>Doe</td>--%>
-<%--            <td>john@example.com</td>--%>
-<%--        </tr>--%>
-<%--        <tr>--%>
-<%--            <td>Mary</td>--%>
-<%--            <td>Moe</td>--%>
-<%--            <td>mary@example.com</td>--%>
-<%--        </tr>--%>
-<%--        <tr>--%>
-<%--            <td>July</td>--%>
-<%--            <td>Dooley</td>--%>
-<%--            <td>july@example.com</td>--%>
-<%--        </tr>--%>
         </tbody>
     </table>
 </div>
@@ -80,11 +58,13 @@
                     console.log(val);
                     // var ulTemp = ul.attr("id",val.id);
                     // ulTemp.append()
-                    var url = "/post/edit/"+val.id;
+                    var urlToEdit = "/post/edit/"+val.id;
+                    var urlToDelete = "/post/delete/"+val.id;
                     table.append("<tr><td>"+val.user.firstName +"</td>"+
                         "<td>at "+ val.place.placeName+"</td>" +
                         "<td>"+val.postContent+"</td>" +
-                        "<td><a role='button' href='"+url+"' type=\"button\" class=\"btn btn-primary\">Edit</a></td>" +
+                        "<td><a role='button' href='"+urlToEdit+"' type=\"button\" class=\"btn btn-primary\">Edit</a></td>" +
+                        "<td><a role='button' href='"+urlToDelete+"' type=\"button\" class=\"btn btn-danger\">Delete</a></td>" +
                         "</tr>");
                     <%--div.append('<ul lass="list-group" id="1"> <li> ${val.postContent} </li> </ul>');--%>
                     // $('<option>').val(val.id).text(val.privacyType).appendTo(select);
@@ -93,6 +73,10 @@
         });
     });
 </script>
+
+<h3>
+    ${message}
+</h3>
 </body>
 </html>
 

@@ -31,8 +31,8 @@ public class PostServiceImp implements PostService {
     }
 
     @Override
-    public Post getPosyById(int id) {
-        return postDao.getPosyById(id);
+    public Post getPostById(int id) {
+        return postDao.getPostById(id);
     }
 
     @Override

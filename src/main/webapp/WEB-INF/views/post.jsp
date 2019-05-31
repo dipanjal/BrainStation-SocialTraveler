@@ -94,7 +94,7 @@
 
     </div>
 
-    <input type="submit" value="${btnText}"/></td>
+    <input type="submit" value="New Post"/></td>
 
 </form:form>
 

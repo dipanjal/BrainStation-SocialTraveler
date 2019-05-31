@@ -11,7 +11,7 @@ public interface PostService {
     Post save(Post post);
     boolean update(Post post);
     boolean delete(Post post) throws Exception;
-    Post getPosyById(int id);
+    Post getPostById(int id);
     List<Post> getAllPosts();
     List<Post> getAllPublicPosts();
 }

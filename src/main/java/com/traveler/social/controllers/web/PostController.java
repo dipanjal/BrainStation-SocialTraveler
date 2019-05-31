@@ -1,8 +1,6 @@
 package com.traveler.social.controllers.web;
 
 import com.traveler.social.models.entities.Post;
-import com.traveler.social.models.entities.User;
-import com.traveler.social.models.viewmodels.PostForm;
 import com.traveler.social.service.PlaceService;
 import com.traveler.social.service.PostService;
 import com.traveler.social.service.PrivacyTypeService;
@@ -16,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @Controller
 @RequestMapping("/post")
@@ -62,7 +59,7 @@ public class PostController {
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public String editIndex(@PathVariable(name="id") int id, Model model){
-        Post post = postService.getPosyById(id);
+        Post post = postService.getPostById(id);
         post.setUserId(1);
         model.addAttribute("newPost", post);
         model.addAttribute("btnText", "update");
@@ -81,5 +78,22 @@ public class PostController {
         }
         model.addAttribute("message","somwthing went wrong");
         return "post-edit";
+    }
+
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    public String deletePost(@PathVariable(name="id") int id, Model model){
+        Post postToDelete = postService.getPostById(id);
+        try{
+            if(postToDelete!=null){
+                if(postService.delete(postToDelete)){
+                    model.addAttribute("message", "post deleted");
+                }
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+            model.addAttribute("message", "something went wrong");
+        }
+        return "timeline";
     }
 }
